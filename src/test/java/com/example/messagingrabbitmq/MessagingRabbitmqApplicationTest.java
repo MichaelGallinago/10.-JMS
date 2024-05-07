@@ -29,25 +29,24 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 @SpringBootTest
 public class MessagingRabbitmqApplicationTest {
 
-	@MockBean
-	private Runner runner;
+    @MockBean
+    private Runner runner;
 
-	@Autowired
-	private RabbitTemplate rabbitTemplate;
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
-	@Autowired
-	private Receiver receiver;
+    @Autowired
+    private Receiver receiver;
 
-	@Test
-	public void test() throws Exception {
-		try {
-			rabbitTemplate.convertAndSend(MessagingRabbitmqApplication.queueName,
-					"Hello from RabbitMQ!");
-			receiver.getLatch().await(10000, TimeUnit.MILLISECONDS);
-		}
-		catch (AmqpConnectException e) {
-			// ignore - rabbit is not running
-		}
-	}
+    @Test
+    public void test() throws Exception {
+        try {
+            rabbitTemplate.convertAndSend(MessagingRabbitmqApplication.queueName,
+                    "Hello from RabbitMQ!");
+            receiver.getLatch().await(10000, TimeUnit.MILLISECONDS);
+        } catch (AmqpConnectException e) {
+            // ignore - rabbit is not running
+        }
+    }
 
 }
