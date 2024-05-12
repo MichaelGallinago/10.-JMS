@@ -8,7 +8,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.io.IOException;
 import java.util.UUID;
 
 @SpringBootApplication
@@ -48,8 +47,7 @@ public class MessagingRabbitmqApplication {
         return new MessageListenerAdapter(receiver, "receiveMessage");
     }
 
-    public static void main(String[] args) throws InterruptedException, IOException {
+    public static void main(String[] args) throws InterruptedException {
         SpringApplication.run(MessagingRabbitmqApplication.class, args).close();
     }
-
 }
